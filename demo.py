@@ -29,10 +29,10 @@ parser.add_argument('--num_superpixels', metavar='K', default=10000, type=int,
                     help='number of superpixels')
 parser.add_argument('--compactness', metavar='C', default=100, type=float, 
                     help='compactness of superpixels')
-parser.add_argument('--visualize', metavar='1 or 0', default=1, type=int, 
+parser.add_argument('--visualize', metavar='1 or 0', default=0, type=int, 
                     help='visualization flag')
 parser.add_argument('--input', metavar='FILENAME',
-                    help='input image file name', required=True)
+                    help='input image file name', required=False, default='/root/pytorch-unsupervised-segmentation/images/552_C_005.png')
 args = parser.parse_args()
 
 # CNN model
@@ -130,4 +130,9 @@ if not args.visualize:
     im_target = target.data.cpu().numpy()
     im_target_rgb = np.array([label_colours[ c % 100 ] for c in im_target])
     im_target_rgb = im_target_rgb.reshape( im.shape ).astype( np.uint8 )
-cv2.imwrite( "output.png", im_target_rgb )
+cv2.imwrite( "output3.png", im_target_rgb )
+
+
+# gray = cv2_imread("/root/3D-CNN/dataset_roi/6view_dataset_562_2000/A/10311-343-153_(1-1)_006.png", 1)
+# gray = cv2.imread('/root/3D-CNN/dataset_roi/6view_dataset_562_2000/B/UM-20564-301-01-559A_T1_(1-4)_005.png')
+# gray = cv2.imread('/root/3D-CNN/dataset_roi/6view_dataset_562_2000/B/UM-40440-B01-01-152_T2_(1-6)_005.png')
